@@ -1,0 +1,81 @@
+{
+  "products": [
+    {
+      "id": "6",
+      "name": "Product 6",
+      "price": "819",
+      "image": "https://picsum.photos/id/6/200/300",
+      "description": "This is product 2",
+      "discount": 0,
+      "quantity": 10,
+      "featured": false
+    },
+    {
+      "id": "7",
+      "name": "Product 7",
+      "price": 819.99,
+      "image": "https://picsum.photos/id/7/200/300",
+      "description": "This is product 2",
+      "discount": 0,
+      "quantity": 10,
+      "featured": false
+    },
+    {
+      "id": "8",
+      "name": "Product 8",
+      "price": 819.99,
+      "image": "https://picsum.photos/id/8/200/300",
+      "description": "This is product 2",
+      "discount": 0,
+      "quantity": 10,
+      "featured": false
+    },
+    {
+      "id": "9",
+      "name": "Product 9",
+      "price": 819.99,
+      "image": "https://picsum.photos/id/9/200/300",
+      "description": "This is product 2",
+      "discount": 0,
+      "quantity": 10,
+      "featured": true
+    },
+    {
+      "id": "10",
+      "name": "Product 10",
+      "price": 819.99,
+      "image": "https://picsum.photos/id/10/200/300",
+      "description": "This is product 2",
+      "discount": 0,
+      "quantity": 10,
+      "featured": false
+    },
+    {
+      "id": "0d73",
+      "name": "AnDrey204",
+      "price": 11,
+      "category": "222",
+      "image": "https://picsum.photos/id/1/200/300",
+      "description": "safewrew",
+      "discount": 30,
+      "featured": true,
+      "countInStock": 111
+    },
+    {
+      "id": "c1af",
+      "name": "Trên cây cầu đổ nát",
+      "price": 2001,
+      "image": "https://picsum.photos/id/1/200/300",
+      "description": "safewrew",
+      "discount": 30
+    },
+    {
+      "id": "e22f",
+      "name": "AnDrey204",
+      "price": "2001",
+      "image": "https://picsum.photos/id/1/200/300",
+      "description": "safewrew",
+      "discount": "30"
+    }
+  ]
+}
