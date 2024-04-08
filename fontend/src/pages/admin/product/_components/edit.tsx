@@ -8,32 +8,31 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
-import { IProduct } from "@/interfaces/product";
-import { UpdateProduct } from "@/service/product";
+import useProductMutation from "@/hooks/useProductMutation";
+import useProductQuery from "@/hooks/useProductQuery";
 import { Checkbox } from "@radix-ui/react-checkbox";
-import { useMutation } from "@tanstack/react-query";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 const ProductEdit = () => {
-  const form = useForm();
-  const { toast } = useToast();
-  const mutation = useMutation({
-    mutationFn: async (product: IProduct) => {
-      const { data } = await UpdateProduct(product._id);
-      return data;
-    },
-    onSuccess: () => {
-      form.reset();
-      toast({
-        title: "Sửa thành công",
-        variant: "success",
-      });
-    },
+  const { id } = useParams();
+  // console.log(id);
+
+  const { data } = useProductQuery(id);
+  // console.log(data);
+
+  const form = useForm(data);
+  const { onSubmit } = useProductMutation({
+    action: "UPDATE",
   });
-  const onSubmit: SubmitHandler<IProduct> = (product: IProduct) => {
-    mutation.mutate(product);
-  };
+  useEffect(() => {
+    if (data) {
+      form.reset(data);
+      // console.log("testdata", data);
+    }
+  }, [form, data]);
+
   return (
     <div>
       <h1 className="text-center">SỬA SẢN PHẨM</h1>
@@ -46,11 +45,11 @@ const ProductEdit = () => {
           <FormField
             control={form.control}
             name="name"
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel htmlFor="name">Name</FormLabel>
                 <FormControl>
-                  <Input {...form.register("name")} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -64,7 +63,7 @@ const ProductEdit = () => {
               <FormItem>
                 <FormLabel htmlFor="price">Price</FormLabel>
                 <FormControl>
-                  <Input {...field} id="price" />
+                  <Input {...field} type="number" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -76,9 +75,9 @@ const ProductEdit = () => {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="category">category</FormLabel>
+                <FormLabel htmlFor="category">Category</FormLabel>
                 <FormControl>
-                  <Input {...field} id="category" />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,7 +91,7 @@ const ProductEdit = () => {
               <FormItem>
                 <FormLabel htmlFor="image">Image</FormLabel>
                 <FormControl>
-                  <Input {...field} id="image" />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +105,7 @@ const ProductEdit = () => {
               <FormItem>
                 <FormLabel htmlFor="description">Description</FormLabel>
                 <FormControl>
-                  <Input {...field} id="description" />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -120,7 +119,7 @@ const ProductEdit = () => {
               <FormItem>
                 <FormLabel htmlFor="discount">Discount</FormLabel>
                 <FormControl>
-                  <Input {...field} id="discount" />
+                  <Input {...field} type="number" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -130,20 +129,23 @@ const ProductEdit = () => {
           <FormField
             control={form.control}
             name="featured"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>featured?</FormLabel>
-                </div>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              // console.log("check", data);
+              return (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>featured?</FormLabel>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           ></FormField>
           <Button variant="destructive" type="submit">
             Submit

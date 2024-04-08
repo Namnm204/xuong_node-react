@@ -49,7 +49,7 @@ export const DeleteById = async (id: number | string) => {
 export const UpdateProduct = async (product: IProduct) => {
   try {
     // Gửi request PUT đến endpoint "/products/:id" để cập nhật thông tin sản phẩm với ID tương ứng từ API
-    const response = await instance.put(`/products/${product.id}`, product);
+    const response = await instance.put(`/products/${product._id}`, product);
     return response.data; // Trả về dữ liệu sản phẩm đã được cập nhật từ response
   } catch (error) {
     console.log(error); // Ghi log lỗi nếu có lỗi xảy ra

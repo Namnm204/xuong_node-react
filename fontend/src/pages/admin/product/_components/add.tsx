@@ -82,11 +82,11 @@ const ProductAdd = () => {
     resolver: joiResolver(productSchema),
     defaultValues: {
       name: "",
-      price: 0,
+      price: "",
       description: "",
-      discount: 0,
+      discount: "",
       featured: false,
-      countInStock: 0,
+      countInStock: "",
       image: "",
       gallery: [],
       category: "",
@@ -125,7 +125,7 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="name">Name</FormLabel>
                 <FormControl>
-                  <Input {...field} id="name" />
+                  <Input {...field} id="name" {...form.register("name")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -139,7 +139,7 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="price">Price</FormLabel>
                 <FormControl>
-                  <Input {...field} id="price" />
+                  <Input {...field} id="price" {...form.register("price")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -153,7 +153,11 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="category">category</FormLabel>
                 <FormControl>
-                  <Input {...field} id="category" />
+                  <Input
+                    {...field}
+                    id="category"
+                    {...form.register("category")}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -167,7 +171,7 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="image">Image</FormLabel>
                 <FormControl>
-                  <Input {...field} id="image" />
+                  <Input {...field} id="image" {...form.register("image")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -181,7 +185,11 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="description">Description</FormLabel>
                 <FormControl>
-                  <Input {...field} id="description" />
+                  <Input
+                    {...field}
+                    id="description"
+                    {...form.register("description")}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -195,7 +203,11 @@ const ProductAdd = () => {
               <FormItem>
                 <FormLabel htmlFor="discount">Discount</FormLabel>
                 <FormControl>
-                  <Input {...field} id="discount" />
+                  <Input
+                    {...field}
+                    id="discount"
+                    {...form.register("discount")}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
